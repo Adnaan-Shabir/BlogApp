@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %}
+{% block title %}Logout{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="cover">
+    <div class="container">
+        <div class="row mt-5 pt-3">
+            <div class="col-md-5 mx-auto">
+                <div class="card shadow my-3">
+                    <div class="card-body">
+                        <h3 class="text-center text-primary">Logout</h3>
+                        <hr>
+                        <div class='alert alert-info'>
+                            You have been logged out successfully.
+                        </div>
+                        <div class="text-center my-3">
+                  <a class="nav-link  text-primary" aria-current="page" href="{% url 'login'%}"
+            >Login Again</a>
+              </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

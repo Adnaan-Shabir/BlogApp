@@ -1,0 +1,63 @@
+{% extends 'partials/base.html' %}
+{% block title%}Post Detail{% endblock%}
+{% load crispy_forms_tags %}
+{% block content %} 
+  <div class="container ">
+    <div class="row mt-5 pt-3">
+      <div class="col-md-8 mx-auto">
+        <div class="card shadow my-3">
+          <div class="card-body">
+               <div class="row">
+              <div class="col-md-4">
+                <img class="img-thumbnail" src="{{post.author.profilemodel.image.url}}" alt="img">
+                <h6 class="text-center">Author : {{post.author}}</h6>
+              </div>
+              <div class="col-md-8">
+                <small>{{post.date_created}}</small>
+                {% if post.author == request.user %}
+                <small><a class="btn btn-danger btn-sm float-end" href="{% url 'blog-post_delete' post.id %}">Delete
+                </a> </small>
+                <small><a class="btn btn-primary btn-sm float-end mx-2" href="{% url 'blog-post_edit' post.id %}">Edit
+                </a>
+                </small>
+                {% endif %}
+                <hr>
+                <a class="h3 text-primary link-underline link-underline-opacity-0"
+                   href="{% url 'blog-post_detail' post.id%}">{{post.title}}</a>
+                <p class="text-justify py-3">{{post.content}}</p>
+              </div>
+            </div>
+            <div class="accordion mt-5" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Comments : {{post.comment_count}}
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div style="height: 150px; overflow-y: scroll" class="accordion-body">
+                    {%  for comment in post.comments %}
+                  <p class="text-justify">
+
+                    {{ comment.content}}
+
+                  </p>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            <div class="container-fluid my-3">
+              <form method="POST">
+              {% csrf_token %}
+              {{ c_form | crispy}}
+              <input class="btn btn-primary float-end" type="submit" value="Submit" >
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
