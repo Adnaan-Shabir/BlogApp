@@ -1,4 +1,10 @@
-# Project Name : Let'sBlog
-# Technologies Used : <p>Python, Django, HTMl, Bootstrap </p>
+# Project Name : Let'sBlog <br>
+### Technologies Used :  
+- Python <br>
+- Django <br>
+- HTML <br>
+- Bootstrap <br>
+
 <br>
-Author : Adnan Sheikh
+
+## Author : Adnan Sheikh <br>
